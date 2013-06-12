@@ -1,0 +1,34 @@
+##########################################
+# Boot Options
+##########################################
+log_file=running2.txt
+
+##########################################
+# Camera Capture Options: 
+##########################################
+#src_movie=0
+#src_movie=http://192.168.1.101/img/video.asf
+#src_movie=save1.avi
+#src_movie=save2.avi
+#src_movie=movie.m4v
+#src_movie=movie2.m4v
+src_movie=youtube1.mp4
+#src_movie=mms://192.168.1.100/img/video.asf
+#src_movie=http://192.168.25.12/img/video.asf
+#src_movie=http://192.168.1.100/img/video.mjpeg
+#src_movie=http://192.168.1.100/img/mjpeg.cgi 20fps, 300 resu, normal
+#src_movie=http://192.168.1.100/img/mjpeg.jpg
+#src_movie=0
+
+##########################################
+# Camera Comunication Options: 
+##########################################
+#url_server=http://192.168.1.140:3000/cameras/1/translade.json
+url_server=http://192.168.1.140:3000/cameras/1/movements
+url_rasp=127.0.0.1
+
+
+##########################################
+# Pedestrian Detection 
+##########################################
+win_stride=(4,4)

@@ -1,0 +1,173 @@
+import cv2.cv as cv
+import cv2
+import sys
+import os,logging
+
+
+from datetime import datetime
+
+'''
+Autor: Eusyar Alves de Carvalho
+
+Doc: A classe ut indica utilidades, um forma simples de incapsular chamadas a modulos mais
+ complexos, no caso o cv e o cv2, bem como oferecer utilidades genericas.
+
+'''
+class ut:
+
+	'''
+	Cria uma imagem. 
+	FIXME: Retorna um numpy ou um cvmat ou uma iplimage
+	'''
+	@staticmethod
+	def img(imgSize, depth = cv.IPL_DEPTH_8U, channels = 3):
+		return cv.CreateImage( cv.GetSize( imgSize ), depth, channels )
+	
+	@staticmethod
+	def query(cam_rec):
+		return cam_rec.read()	
+		
+	@staticmethod	
+	def storage(self): 
+		return cv.CreateMemStorage(0)	
+			
+	@staticmethod
+	def drawRect(rects, dest, color):	
+		(tlx, tly, brx, bry) = rects
+		cv2.rectangle(dest, (int(tlx),int(tly)) , (int(brx),int(bry)), color)
+	
+	@staticmethod
+	def insindeOnePoint(rect, rect2):
+		(rx, ry, rw, rh) = rect
+		(qx, qy, qw, qh) = rect2
+		return rx > qx and ry > qy and rx + rw < qx + qw and ry + rh < qy + qh
+
+	@staticmethod
+	def area(rect):
+		rx1, ry1,rx2, ry2  = rect
+		if(rx1 > rx2):
+			rw = rx1 - rx2
+		else :
+			rw = rx2 - rx1			
+		if(ry1 > ry2):
+			rh = ry1 - ry2
+		else :
+			rh = ry2 - ry1			
+		return rh*rw
+
+	@staticmethod
+	def insindeTwoPoint(rect, rect2, offset):
+		rx1, ry1,rx2, ry2  = rect
+		qx1, qy1,qx2, qy2  = rect2		
+		
+		ra = ut.area(rect)
+		qa = ut.area(rect2)
+		
+		# Qa pode estar dentro de ra
+		if(ra > qa):
+			return (rx1 - offset <= qx1) and (ry1 - offset <= qy1) and (rx2 + offset >= qx2) and (ry2 + offset >= qy2)
+		else:
+			return (qx1 - offset <= rx1) and (qy1 - offset <= ry1) and (qx2 + offset >= rx2) and (qy2 + offset >= ry2)
+
+	@staticmethod
+	def cam(source = -1):		
+		if(source is "0"):
+			source = 0		
+		cam_rec = cv2.VideoCapture(source)
+		if cam_rec is None or not cam_rec.isOpened():
+			print "ERROR || A camera nao foi aberta"
+			sys.exit(1)
+		return cam_rec
+
+	'''
+		Esse metodo foi copiado de samples/python2/commom.py
+	'''
+	@staticmethod
+	def draw_str(dst, (x, y), s):
+		cv2.putText(dst, s, (x+1, y+1), cv2.FONT_HERSHEY_PLAIN, 1.0, (0, 0, 0), thickness = 2, lineType=cv2.CV_AA)
+		cv2.putText(dst, s, (x, y), cv2.FONT_HERSHEY_PLAIN, 1.0, (255, 255, 255), lineType=cv2.CV_AA)
+
+
+	@staticmethod
+	def displayImageInfo(image):
+		print '---------------Image INFO---------------'
+		print 'Width X Height : ' + str(image.width) + " x " + str(image.height)
+		print 'Pixel Depth    : ' + str(image.depth)
+		print 'Channles       : ' + str(image.nChannels)
+		print '----------------------------------------'
+
+	@staticmethod
+	def toGrayScale(imgSrc, imgDst):
+		cv.CvtColor(imgSrc, imgDst , cv.CV_RGB2GRAY)
+	
+	@staticmethod
+	def empty(img):
+		print img.tostring()
+		for x in xrange(img.cols):
+			for y in xrange(img.rows):
+				if(img[y, x] != 0 ):
+					return False
+		return True
+	
+	@staticmethod
+	def running():
+		c = cv.WaitKey(4)
+		if c == ord('q'):
+			return False
+		return True
+		
+class FPS:
+	
+	def __init__(self):
+		self.fps = 0
+		self.fps_counter = 0
+		self.old_time = self.clock()
+		self.actual_time = self.clock()
+		self.start = self.clock()
+	
+	def clock(self):
+		return cv2.getTickCount() / cv2.getTickFrequency()
+
+	def update(self):
+		ret = self.fps 
+		self.fps_counter += 1;
+		self.actual_time = self.clock()
+		if( self.old_time + 1 <  self.actual_time ):
+			self.old_time = self.actual_time
+			self.fps = self.fps_counter
+			self.fps_counter = 0
+			return self.fps		
+		return self.fps
+			
+	def time(self):
+		today = datetime.time(datetime.now())
+		return str(today.hour) + ":" +str(today.minute) + ":" + str(today.second)
+			
+	def timer(self):
+		return ((self.clock() - self.start)*1000)
+	
+'''
+Logs - baseado na classe exemplo de http://swaroopch.com/notes/python_pt-br-biblioteca_padrao/
+'''
+class log:
+	
+	def __init__(self,logFile="running.log"):
+		self.logging_file = os.path.join(os.getenv('HOME'), logFile)
+		logging.basicConfig(
+		    level=logging.DEBUG,
+		    format='%(asctime)s:%(levelname)s:%(message)s',
+		    filename = self.logging_file,
+		    filemode = 'w',
+		)
+	
+	def info(self, msg):
+		logging.info(msg)
+	
+	def debug(self, msg):
+		logging.debug(msg)
+		
+	def warning(self, msg):
+		logging.warning(msg)
+			
+			
+			
