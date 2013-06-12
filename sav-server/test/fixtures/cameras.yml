@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  batery_state: 1.5
+  current_position: MyString
+  go_to_position: MyString
+  current_x_position: 1.5
+  current_y_position: 1.5
+  go_to_x_position: 1.5
+  go_to_y_position: 1.5
+
+two:
+  batery_state: 1.5
+  current_position: MyString
+  go_to_position: MyString
+  current_x_position: 1.5
+  current_y_position: 1.5
+  go_to_x_position: 1.5
+  go_to_y_position: 1.5

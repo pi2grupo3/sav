@@ -1,0 +1,35 @@
+<h1>Listing cameras</h1>
+
+<table>
+  <tr>
+    <th>Batery state</th>
+    <th>Current position</th>
+    <th>Go to position</th>
+    <th>Current x position</th>
+    <th>Current y position</th>
+    <th>Go to x position</th>
+    <th>Go to y position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cameras.each do |camera| %>
+  <tr>
+    <td><%= camera.batery_state %></td>
+    <td><%= camera.current_position %></td>
+    <td><%= camera.go_to_position %></td>
+    <td><%= camera.current_x_position %></td>
+    <td><%= camera.current_y_position %></td>
+    <td><%= camera.go_to_x_position %></td>
+    <td><%= camera.go_to_y_position %></td>
+    <td><%= link_to 'Show', camera %></td>
+    <td><%= link_to 'Edit', edit_camera_path(camera) %></td>
+    <td><%= link_to 'Destroy', camera, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Camera', new_camera_path %>

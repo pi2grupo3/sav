@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Batery state:</b>
+  <%= @camera.batery_state %>
+</p>
+
+<p>
+  <b>Current position:</b>
+  <%= @camera.current_position %>
+</p>
+
+<p>
+  <b>Go to position:</b>
+  <%= @camera.go_to_position %>
+</p>
+
+<p>
+  <b>Current x position:</b>
+  <%= @camera.current_x_position %>
+</p>
+
+<p>
+  <b>Current y position:</b>
+  <%= @camera.current_y_position %>
+</p>
+
+<p>
+  <b>Go to x position:</b>
+  <%= @camera.go_to_x_position %>
+</p>
+
+<p>
+  <b>Go to y position:</b>
+  <%= @camera.go_to_y_position %>
+</p>
+
+
+<%= link_to 'Edit', edit_camera_path(@camera) %> |
+<%= link_to 'Back', cameras_path %>

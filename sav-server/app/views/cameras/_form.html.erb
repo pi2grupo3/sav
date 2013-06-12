@@ -1,0 +1,45 @@
+<%= form_for(@camera) do |f| %>
+  <% if @camera.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@camera.errors.count, "error") %> prohibited this camera from being saved:</h2>
+
+      <ul>
+      <% @camera.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :batery_state %><br />
+    <%= f.text_field :batery_state %>
+  </div>
+  <div class="field">
+    <%= f.label :current_position %><br />
+    <%= f.text_field :current_position %>
+  </div>
+  <div class="field">
+    <%= f.label :go_to_position %><br />
+    <%= f.text_field :go_to_position %>
+  </div>
+  <div class="field">
+    <%= f.label :current_x_position %><br />
+    <%= f.text_field :current_x_position %>
+  </div>
+  <div class="field">
+    <%= f.label :current_y_position %><br />
+    <%= f.text_field :current_y_position %>
+  </div>
+  <div class="field">
+    <%= f.label :go_to_x_position %><br />
+    <%= f.text_field :go_to_x_position %>
+  </div>
+  <div class="field">
+    <%= f.label :go_to_y_position %><br />
+    <%= f.text_field :go_to_y_position %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
