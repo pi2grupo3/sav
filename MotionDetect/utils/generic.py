@@ -70,6 +70,12 @@ class ut:
 			return (qx1 - offset <= rx1) and (qy1 - offset <= ry1) and (qx2 + offset >= rx2) and (qy2 + offset >= ry2)
 
 	@staticmethod
+	def pointInsideRect(rect,point):
+		x1,y1,x2,y2 = rect
+		x3,y3 = point
+		return x3 >= x1 and x2 >= x3 and y3 >= y1 and y2 >= y3
+
+	@staticmethod
 	def cam(source = -1):		
 		if(source is "0"):
 			source = 0		

@@ -13,11 +13,12 @@ Created on 26/05/2013
 class CameraCommunicator():
     
     def __init__(self, log, urlServer = "127.0.0.1", urlRaspberry = "127.0.0.1" ):
-        self.moving = False
-        self.urlServer = urlServer
-        self.urlRaspberry = urlRaspberry
-        self.log = log
-    
+		self.moving = False
+		self.urlServer = urlServer
+		self.urlRaspberry = urlRaspberry
+		self.log = log
+		self.lastAskedPosition = "hold"
+
     def isOn(self):
         print "---"
         
@@ -30,21 +31,32 @@ class CameraCommunicator():
     def turnOff(self):
         print "---"
         
-    def moveLeft(self, steps):        
+    def moveLeft(self, steps):
+        if( self.lastAskedPosition == "left"):	
+            self.log.info("Movendo a camera para esquerda")
+            return
         if( not self.move(steps, "left") ):
             self.log.warning("Impossível mover a câmera para esquerda...")            
-        self.log.info("Movendo a camera para esquerda")                 
+        self.log.info("Movendo a camera para esquerda")
+        self.lastAskedPosition = "left"
         
     def moveRight(self, steps):
+        if( self.lastAskedPosition == "right"):	
+            self.log.info("Movendo a camera para direita")
+            return
         if( not self.move(steps, "right") ):
             self.log.warning("Impossível mover a câmera para direita...")            
-        self.log.info("Movendo a camera para direita")     
+        self.log.info("Movendo a camera para direita")
+        self.lastAskedPosition = "right"
     
     def hold(self, steps):
+        if ( self.lastAskedPosition == "hold" ) :
+            self.log.info("Parando o movimento da camera")
+            return
         if( not self.move(steps, "hold") ):
             self.log.warning("Impossível hold")            
-        self.log.info("Movendo a camera para direita")     
-    
+        self.log.info("Parando o movimento da camera")     
+        self.lastAskedPosition = "hold" 
     '''
     Post action
     '''

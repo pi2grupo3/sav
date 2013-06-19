@@ -1,7 +1,3 @@
-import cv2.cv as cv
-import cv2
-import sys
-
 class Boot:
 
 	def __init__(self, confFile="conf.txt"):

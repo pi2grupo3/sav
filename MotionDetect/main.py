@@ -6,7 +6,6 @@
 Versão 0.0.2
 '''
 
-import cv2.cv as cv
 import cv2
 
 from utils.generic import ut
@@ -30,7 +29,7 @@ if __name__ == "__main__":
     
     hmt = HMT(cam_rec, conf, log)
     
-    while ( ut.running() ):   
+    while ( ut.running() ):    
         img = hmt.run()
         cv2.imshow('Image', img)
     

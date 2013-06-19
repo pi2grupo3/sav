@@ -36,10 +36,18 @@ class HMT:
         rval, img = ut.query(self.cam_rec)  
         self.h, self.w = img.shape[:2]
         
+        self.center_point = self.w/2 , self.h/2
+        cX, cY = self.center_point
+        
+        x1,y1 = cX - self.w*0.2, cY - self.h*0.2
+        x2,y2 = cX + self.w*0.2, cY + self.h*0.2 
+        
+        self.center_rect = x1,y1,x2,y2
+        
         #self.cam_com.moveLeft(5)
-        self.cam_com.moveRight(5)
+        #self.cam_com.moveRight(5)
         #self.cam_com.hold(2)
-        sys.exit()
+        #sys.exit()
         
         #print self.cam_com.ask()
         
@@ -77,7 +85,10 @@ class HMT:
             #Multiplos alvos para centralizar
             if( len(self.tracker.targets) > 1):
                 extremePoints = self.extremePoints()
+                centerPoint = self.centerPoint(extremePoints)
                 ut.drawRect(extremePoints, img, (0, 255, 0) )
+                if( not ut.pointInsideRect(self.center_rect, centerPoint ) ):
+                    print "Alvo fora do centro"
             #apenas um alvo para centralizar    
             #else:                
             
@@ -86,7 +97,7 @@ class HMT:
         #ut.draw_str(img, (20, 50), "Data: " + str( fps.time()  ) )
         
         # Center Point debug
-        #ut.drawRect((0,0, self.w-1, self.h-1), img, (0, 255, 0) )
+        ut.drawRect( self.center_rect, img, (255, 0, 0) )
          
         return img            
 
@@ -101,5 +112,9 @@ class HMT:
             if( erx >= brx ):
                 (brx, bry) = (erx, ery)
         return tlx,tly, brx,bry
+
+    def centerPoint(self , rect):
+        x1,y1,x2,y2 = rect
+        return (x1+x2)/2 , (y1+y2)/2
             
-        
+    
