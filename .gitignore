@@ -18,3 +18,11 @@ pickle-email-*.html
 #linux backup files
 *~
 *.swp
+
+#video files
+*.mp4
+*.avi
+*.m4v
+
+#python binary
+*.pyc
