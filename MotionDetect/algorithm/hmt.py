@@ -43,13 +43,7 @@ class HMT:
         x2,y2 = cX + self.w*0.2, cY + self.h*0.2 
         
         self.center_rect = x1,y1,x2,y2
-        
-        #self.cam_com.moveLeft(5)
-        #self.cam_com.moveRight(5)
-        #self.cam_com.hold(2)
-        #sys.exit()
-        
-        #print self.cam_com.ask()
+        self.direction = "hold"
         
     def run(self):                                            
         self.time_counter += 1
@@ -82,24 +76,41 @@ class HMT:
                     self.tracker.setTargets(targets,img)
         
         if( self.tracker.hasTargets() ):            
-            #Multiplos alvos para centralizar
-            if( len(self.tracker.targets) > 1):
-                extremePoints = self.extremePoints()
-                centerPoint = self.centerPoint(extremePoints)
-                ut.drawRect(extremePoints, img, (0, 255, 0) )
-                if( not ut.pointInsideRect(self.center_rect, centerPoint ) ):
-                    print "Alvo fora do centro"
-            #apenas um alvo para centralizar    
-            #else:                
+           
+            extremePoints = self.extremePoints()
+            centerPoint = self.centerPoint(extremePoints)
+           
+            ut.drawRect(extremePoints, img, (0, 255, 0) )
+            if( not ut.pointInsideRect(self.center_rect, centerPoint ) ):
+                direction = self.askDirection(centerPoint)
+                if( direction != self.direction  ):
+                    self.direction = direction
+                    if(direction == "right"):
+                        self.cam_com.moveRight(1)
+                    if(direction == "left"):
+                        self.cam_com.moveLeft(1)
+                    if(direction == "hold"):
+                        self.cam_com.hold()
             
             self.tracker.traceTargets(img)                                            
-        #ut.draw_str(img, (20, 20), "FPS: " + str(  fps.update()  ) )
+       
+       #ut.draw_str(img, (20, 20), "FPS: " + str(  fps.update()  ) )
         #ut.draw_str(img, (20, 50), "Data: " + str( fps.time()  ) )
         
         # Center Point debug
         ut.drawRect( self.center_rect, img, (255, 0, 0) )
          
         return img            
+
+    def askDirection(self,point):
+        x1,y1,x2,y2 = self.center_rect
+        xp,yp = point
+        if( x1 > xp  ):
+            return "left"
+        if( x2 < y2 ):
+            return "right"
+
+        return "hold"
 
     def extremePoints(self):
         rects = self.tracker.targets
