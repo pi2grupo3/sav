@@ -44,7 +44,11 @@ class HMT:
         
         self.center_rect = x1,y1,x2,y2
         self.direction = "hold"
-        
+       
+        #self.cam_com.moveRight(1)
+        #self.cam_com.moveLeft(1)
+        #sys.exit()
+
     def run(self):                                            
         self.time_counter += 1
         
@@ -75,11 +79,9 @@ class HMT:
                 if( len(targets) > 0 ):                                        
                     self.tracker.setTargets(targets,img)
         
-        if( self.tracker.hasTargets() ):            
-           
+        if( self.tracker.hasTargets() ):                       
             extremePoints = self.extremePoints()
-            centerPoint = self.centerPoint(extremePoints)
-           
+            centerPoint = self.centerPoint(extremePoints)           
             ut.drawRect(extremePoints, img, (0, 255, 0) )
             if( not ut.pointInsideRect(self.center_rect, centerPoint ) ):
                 direction = self.askDirection(centerPoint)
@@ -90,11 +92,16 @@ class HMT:
                     if(direction == "left"):
                         self.cam_com.moveLeft(1)
                     if(direction == "hold"):
-                        self.cam_com.hold()
-            
+                        self.cam_com.hold(1)            
             self.tracker.traceTargets(img)                                            
        
-       #ut.draw_str(img, (20, 20), "FPS: " + str(  fps.update()  ) )
+        else:
+            if(self.direction != "hold" ):
+                self.direction = "hold"
+                self.cam_com.hold(1)
+
+
+        #ut.draw_str(img, (20, 20), "FPS: " + str(  fps.update()  ) )
         #ut.draw_str(img, (20, 50), "Data: " + str( fps.time()  ) )
         
         # Center Point debug
@@ -107,7 +114,7 @@ class HMT:
         xp,yp = point
         if( x1 > xp  ):
             return "left"
-        if( x2 < y2 ):
+        if( x2 < xp ):
             return "right"
 
         return "hold"
