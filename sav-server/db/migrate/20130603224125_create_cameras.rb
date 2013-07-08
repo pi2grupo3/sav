@@ -1,7 +1,7 @@
 class CreateCameras < ActiveRecord::Migration
   def change
     create_table :cameras do |t|
-      t.float :batery_state
+      t.string :url
       t.string :current_position
       t.string :go_to_position
       t.float :current_x_position
