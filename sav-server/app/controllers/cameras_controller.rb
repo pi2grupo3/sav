@@ -109,6 +109,6 @@ class CamerasController < ApplicationController
 
   # GET /camera/1/streaming
   def streaming
-    
+    @camera = Camera.find(params[:id])
   end 
 end

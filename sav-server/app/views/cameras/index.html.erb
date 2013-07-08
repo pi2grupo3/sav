@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Batery state</th>
+    <th>URL</th>
     <th>Current position</th>
     <th>Go to position</th>
     <th>Current x position</th>
@@ -16,7 +16,7 @@
 
 <% @cameras.each do |camera| %>
   <tr>
-    <td><%= camera.batery_state %></td>
+    <td><%= camera.url %></td>
     <td><%= camera.current_position %></td>
     <td><%= camera.go_to_position %></td>
     <td><%= camera.current_x_position %></td>
