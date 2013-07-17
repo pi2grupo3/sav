@@ -10,7 +10,7 @@ Algoritmo encontrado nos samples
 '''
 class PedestrianDetect:
     
-    def __init__(self, win_stride=(4,4), padding=(15,15), scale=0.95, group_threshold=1 ):
+    def __init__(self, win_stride=(4,4), padding=(5,5), scale=0.95, group_threshold=1 ):
         self.storage = ut.storage(self)
         self.w_s = win_stride
         self.p = padding
@@ -38,7 +38,12 @@ class PedestrianDetect:
             (rx, ry), (rw, rh) = r
             #tl = (rx + int(rw*0.1), ry + int(rh*0.07))
             #br = (rx + int(rw*0.9), ry + int(rh*0.87))
-            rects.append( (rx + int(rw*0.1), ry + int(rh*0.1), rx + int(rw*0.9), ry + int(rh*1)) )
+
+            # FIXME!
+            print "Antes  do offset " + str(rx) + " " +str(ry) + " - "+str(rx + rw) + "  " + str(ry + rh)
+            print "Depois do offset " + str(rx+rw*0.1) + " " +str(ry+rh*0.1) + " - "+ str(rx+rw*0.9) + "  " + str(ry+rh*0.9)
+
+            rects.append( (rx + int(rw*0.1), ry + int(rh*0.1), rx + int(rw*0.9), ry + int(rh*1)) )        
         return rects
         
 class FaceDetect:

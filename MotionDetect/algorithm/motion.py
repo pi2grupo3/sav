@@ -1,3 +1,5 @@
+#coding: utf-8-
+
 from utils.generic import ut 
 import cv2
 import numpy as np 
@@ -32,7 +34,7 @@ class MotionTrack:
     def setTargets(self, rects, frame, offset = 0.9):
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         for (rx,ry,rw,rh) in rects:
-            rect = rx,ry,int(rw*offset),int(rh*offset)
+            rect = rx,ry,int(rw),int(rh)
             self.num += 1
             tracker = MOSSE(frame_gray, rect, self.num)
             self.targets.append(tracker)    
@@ -40,11 +42,17 @@ class MotionTrack:
     def addTarget(self, rect, frame, offset = 0.9):
         self.num += 1
         rx,ry,rw,rh = rect
-        rect = rx,ry,int(rw*0.9),int(rh*0.9)
+        rect = rx,ry,int(rw),int(rh)    
         frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         tracker = MOSSE(frame_gray, rect, self.num)
         self.targets.append(tracker) 
-        
+
+'''
+Classe extraída dos samples do opencv
+
+[1] David S. Bolme et al. "Visual Object Tracking using Adaptive Correlation Filters"
+    http://www.cs.colostate.edu/~bolme/publications/Bolme2010Tracking.pdf
+'''        
 class MOSSE:        
       
     @staticmethod    
@@ -163,9 +171,3 @@ class MOSSE:
     def update_kernel(self):
         self.H = MOSSE.divSpec(self.H1, self.H2)
         self.H[...,1] *= -1
-
-class MotionDetect:
-    
-    def __init__(self):
-        print '--'
-        

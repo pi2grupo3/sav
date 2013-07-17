@@ -26,3 +26,6 @@ pickle-email-*.html
 
 #python binary
 *.pyc
+
+#metadata que ninguem sabe o que que é
+.metadata/
