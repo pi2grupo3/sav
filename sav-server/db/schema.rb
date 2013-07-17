@@ -11,10 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612204220) do
+ActiveRecord::Schema.define(:version => 20130603224125) do
 
   create_table "cameras", :force => true do |t|
-    t.float    "batery_state"
+    t.string   "url"
+    t.string   "current_position"
     t.string   "go_to_position"
     t.float    "current_x_position"
     t.float    "current_y_position"
@@ -22,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20130612204220) do
     t.float    "go_to_y_position"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.integer  "current_position"
   end
 
 end

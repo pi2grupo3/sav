@@ -1,8 +1,10 @@
 SavServer::Application.routes.draw do
+
   resources :cameras do
     member do
       get 'translade'
       post 'movements'
+      get 'streaming'
     end
   end
     
