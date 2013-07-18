@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(version: 20130603224125) do
 
   create_table "cameras", force: true do |t|
     t.string   "url"
-    t.string   "current_position"
+    t.string   "description"
+    t.integer  "current_position"
     t.string   "go_to_position"
     t.float    "current_x_position"
     t.float    "current_y_position"

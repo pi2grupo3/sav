@@ -1,14 +1,14 @@
-<h1>Listing cameras</h1>
+<div class="page-header">
+	<h1>Cameras</h1>
+</div>
 
-<table>
+<div class="well">
+
+<table class="table table-striped">
   <tr>
+    <th>Description</th>
     <th>URL</th>
     <th>Current position</th>
-    <th>Go to position</th>
-    <th>Current x position</th>
-    <th>Current y position</th>
-    <th>Go to x position</th>
-    <th>Go to y position</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,20 +16,18 @@
 
 <% @cameras.each do |camera| %>
   <tr>
+    <td><%= camera.description %></td>
     <td><%= camera.url %></td>
     <td><%= camera.current_position %></td>
-    <td><%= camera.go_to_position %></td>
-    <td><%= camera.current_x_position %></td>
-    <td><%= camera.current_y_position %></td>
-    <td><%= camera.go_to_x_position %></td>
-    <td><%= camera.go_to_y_position %></td>
-    <td><%= link_to 'Show', camera %></td>
-    <td><%= link_to 'Edit', edit_camera_path(camera) %></td>
-    <td><%= link_to 'Destroy', camera, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', camera, :class => 'btn btn-mini btn-primary' %></td>
+    <td><%= link_to 'Edit', edit_camera_path(camera), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', camera, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+</div>
 
-<%= link_to 'New Camera', new_camera_path %>
+<div class="form-actions">
+  <%= link_to 'New Camera', new_camera_path, :class => 'btn btn-primary' %>
+</div>

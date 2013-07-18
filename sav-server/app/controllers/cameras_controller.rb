@@ -81,27 +81,25 @@ class CamerasController < ApplicationController
     end
   end
 
-  # GET /cameras/1/translade
   # GET /cameras/1/translade.json
   def translade
     @camera = Camera.find(params[:id])
 
     respond_to do |format|
       format.json { render :json => @camera, :only => [:id, :current_position, :go_to_position] }
-    end    
+    end
+
+    @camera.translade    
   end
 
-  # PUT /camera/1/movements
-  # PUT /camera/1/movements.json
+  # POST /camera/1/movements.json
   def movements
     @camera = Camera.find(params[:id])
 
     respond_to do |format|
       if @camera.update_attributes(params[:camera])
-        format.html { redirect_to @camera, notice: 'Camera was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
         format.json { render json: @camera.errors, status: :unprocessable_entity }
       end
     end
