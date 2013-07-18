@@ -22,7 +22,7 @@ class Camera < ActiveRecord::Base
   end
 
   def can_go(side)
-    self.send("can_go_#{side.gsub("?", ""}?")
+    self.send("can_go_#{side.gsub("?", "")}?")
   end
 
   #checks if the camera can go left
