@@ -9,11 +9,11 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603224125) do
+ActiveRecord::Schema.define(version: 20130603224125) do
 
-  create_table "cameras", :force => true do |t|
+  create_table "cameras", force: true do |t|
     t.string   "url"
     t.string   "current_position"
     t.string   "go_to_position"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20130603224125) do
     t.float    "current_y_position"
     t.float    "go_to_x_position"
     t.float    "go_to_y_position"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
