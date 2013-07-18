@@ -92,7 +92,7 @@ class CamerasController < ApplicationController
     @camera.translade    
   end
 
-  # PUT /camera/1/movements.json
+  # POST /camera/1/movements.json
   def movements
     @camera = Camera.find(params[:id])
 

@@ -1,6 +1,7 @@
-<%= form_for(@camera) do |f| %>
+<%= form_for(@camera, :html => { :class => 'form-horizontal' }) do |f| %>
   <% if @camera.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-error">
+      <a class="close" data-dismiss="alert">×</a>
       <h2><%= pluralize(@camera.errors.count, "error") %> prohibited this camera from being saved:</h2>
 
       <ul>
@@ -11,35 +12,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
+  
+<fieldset>
+
+  <div class="control-group">
+    <%= f.label :url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :url %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :current_position %><br />
-    <%= f.text_field :current_position %>
+
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :go_to_position %><br />
-    <%= f.text_field :go_to_position %>
+
+  <div class="control-group">
+    <%= f.label :current_position, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :current_position %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :current_x_position %><br />
-    <%= f.text_field :current_x_position %>
+
+  <div class="control-group">
+    <%= f.label :go_to_position, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :go_to_position %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :current_y_position %><br />
-    <%= f.text_field :current_y_position %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
   </div>
-  <div class="field">
-    <%= f.label :go_to_x_position %><br />
-    <%= f.text_field :go_to_x_position %>
-  </div>
-  <div class="field">
-    <%= f.label :go_to_y_position %><br />
-    <%= f.text_field :go_to_y_position %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+</fieldset>
+
 <% end %>

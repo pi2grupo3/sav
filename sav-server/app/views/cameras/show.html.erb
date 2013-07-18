@@ -1,10 +1,15 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row-fluid">
   <div class="span3">
   
-    <h2><b>URL:</b><%= @camera.url %></h2>
+    <h3><%= @camera.description %></h3>
+    
     <div class="well">
+
+    <p>
+      <b>URL:</b>
+      <%= @camera.url %>
+    </p>
+    
     <p>
       <b>Current position:</b>
       <%= @camera.current_position %>
@@ -15,33 +20,14 @@
       <%= @camera.go_to_position %>
     </p>
 
-    <p>
-      <b>Current x position:</b>
-      <%= @camera.current_x_position %>
-    </p>
-
-    <p>
-      <b>Current y position:</b>
-      <%= @camera.current_y_position %>
-    </p>
-
-    <p>
-      <b>Go to x position:</b>
-      <%= @camera.go_to_x_position %>
-    </p>
-
-    <p>
-      <b>Go to y position:</b>
-      <%= @camera.go_to_y_position %>
-    </p>
     </div>
   </div>
 
   <div class="span9">
     <video width="320" height="240" controls>
-      <source src="movie.mp4" type="video/mp4">
-      <source src="movie.ogg" type="video/ogg">
+      <source src="video.mp4" type="video/mp4">
     </video>
+
     <p>
       <button class="btn" type="button"><i class="icon-arrow-left"></i></button>
       <button class="btn" type="button"><i class="icon-arrow-right"></i></button>
@@ -49,14 +35,9 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-<%= link_to 'Edit', edit_camera_path(@camera) %> |
-<%= link_to 'Back', cameras_path %>
+<div class="form-actions">
+    <p>
+      <%= link_to 'Edit', edit_camera_path(@camera), :class => 'btn btn-primary' %>
+    </p> 
+    <%= link_to 'Back', cameras_path %>
+</div>
