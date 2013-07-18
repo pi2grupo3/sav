@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe WelcomeController do
 
+  describe "GET 'sistemaintegrado'" do
+    it "returns http success" do
+      get 'sistemaintegrado'
+      response.should be_success
+    end
+  end
+
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
@@ -26,6 +33,13 @@ describe WelcomeController do
   describe "GET 'monitoramento'" do
     it "returns http success" do
       get 'monitoramento'
+      response.should be_success
+    end
+  end
+
+  describe "GET 'contato'" do
+    it "returns http success" do
+      get 'contato'
       response.should be_success
     end
   end

@@ -22,24 +22,24 @@
       <div class="hero-unit">
         <h1>Sistema Integrado UnB </h1> </br>
         <p>O presente site é a integração dos sistemas: Serviço de auxilio ao vigilante (SAV); Monitoramento do campus; Poste. Cada um dos projetos foi desenvolvido na disciplina de PI-2 com o intutuito de melhorar em algum aspecto o campus da FGA. Esse site busca integrar todos esses serviços em um um só lugar.</p>
-        <p><a href="#" class="btn btn-primary btn-large">Mais informações &raquo;</a></p>
+        <p><a href="http://localhost:3000/welcome/sistemaintegrado" class="btn btn-primary btn-large" style="color:#FFFFFF"> Mais informações</a></p>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
         <div class="span4">
-          <h2><%= link_to 'Servico de auxilio ao vigilante', cameras_path %></h2>
+         <a href="http://localhost:3000/cameras"> <h2>Servico de auxilio ao vigilante</h2> </a>
           <p>Atraves do processamento de imagens, detecta-se pessoas, colocou-se uma camera em um trilho, e fizemos ela andar a partir dos movimentos de pessoas que a camera detectou</p>
           <p><%= link_to 'Mais informaçoes', welcome_seguranca_path, :class => 'btn' %></p>
         </div>
         <div class="span4">
           <h2>Poste </h2>
           <p> Ao se instalar um poste com luminancia xistoplasmo no estacionamento com catavento em cima, pronto trablho concluido</p>
-          <p><a class="btn" href="#">Mais informações &raquo;</a></p>
+          <p><%= link_to 'Mais informaçoes', welcome_poste_path, :class => 'btn' %></p>
        </div>
         <div class="span4">
           <h2>Monitoramento da rede eletrica</h2>
           <p>Esse projeto tem como objetivo djasdohdasohdasijp da rede do campus UnB Gama, ou FGA. Foram instaladas varias coisas</p>
-          <p><a class="btn" href="#">Mais informações &raquo;</a></p>
+          <p><%= link_to 'Mais informaçoes', welcome_monitoramento_path, :class => 'btn' %></p>
         </div>
       </div>
