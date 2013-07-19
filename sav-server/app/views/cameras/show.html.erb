@@ -33,17 +33,24 @@
     :alt => "Video for other Platform/OS") %>
 
     <p>
+        <span class="badge">1</span>
+        <span class="badge badge-success">2</span>
+        <span class="badge">3</span>
+        <span class="badge">4</span>
+        <span class="badge">5</span>
+    </p>
       <!--<button class="btn" type="button"><i class="icon-arrow-left"></i></button>-->
       <%= link_to '<i class="icon-arrow-left"></i>'.html_safe, translade_camera_path(@camera), :class => 'btn' %>
       <!--<button class="btn" type="button"><i class="icon-arrow-right"></i></button>-->
       <%= link_to '<i class="icon-arrow-right"></i>'.html_safe, translade_camera_path(@camera), :class => 'btn' %>
     </p>
+
   </div>
 </div>
 
 <div class="form-actions">
     <p>
-      <%= link_to 'Edit', edit_camera_path(@camera), :class => 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_camera_path(@camera), :class => 'btn btn-primary' , :style => 'color:#FFFFFF' %>
     </p> 
     <%= link_to 'Back', cameras_path %>
 </div>
