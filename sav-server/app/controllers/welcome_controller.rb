@@ -1,4 +1,7 @@
 class WelcomeController < ApplicationController
+  def sistemaintegrado
+  end
+
   def index
   end
 
@@ -9,5 +12,8 @@ class WelcomeController < ApplicationController
   end
 
   def monitoramento
+  end
+
+  def contato
   end
 end

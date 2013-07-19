@@ -9,9 +9,8 @@
     <th>Description</th>
     <th>URL</th>
     <th>Current position</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Actions</th>
+    
   </tr>
 
 <% @cameras.each do |camera| %>
@@ -19,9 +18,10 @@
     <td><%= camera.description %></td>
     <td><%= camera.url %></td>
     <td><%= camera.current_position %></td>
-    <td><%= link_to 'Show', camera, :class => 'btn btn-mini btn-primary' %></td>
-    <td><%= link_to 'Edit', edit_camera_path(camera), :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Destroy', camera, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <td><%= link_to '<i class="icon-search"></i>'.html_safe, camera, :class => 'btn btn-mini btn-primary' %>
+        <%= link_to '<i class="icon-file"></i>'.html_safe, edit_camera_path(camera), :class => 'btn btn-mini' %>
+   <%= link_to '<i class="icon-remove"></i>'.html_safe, camera, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+     </td>
   </tr>
 <% end %>
 </table>

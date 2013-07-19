@@ -1,5 +1,7 @@
 SavServer::Application.routes.draw do
 
+  get "welcome/contato"
+  get "welcome/sistemaintegrado"
   get "welcome/index"
   get "welcome/seguranca"
   get "welcome/poste"
