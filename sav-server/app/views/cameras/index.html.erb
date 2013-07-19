@@ -18,9 +18,9 @@
     <td><%= camera.description %></td>
     <td><%= camera.url %></td>
     <td><%= camera.current_position %></td>
-    <td><%= link_to '<i class="icon-search"></i> Mostrar'.html_safe, camera, :class => 'btn btn-mini btn-white btn-primary' %>
+    <td><%= link_to '<i class="icon-search"></i> Mostrar'.html_safe, camera, :class => 'btn btn-mini btn-white btn-primary', :style => 'color:#FFFFFF' %>
         <%= link_to '<i class="icon-pencil"></i> Editar'.html_safe, edit_camera_path(camera), :class => 'btn btn-mini' %>
-   <%= link_to '<i class="icon-remove"></i> Remover'.html_safe, camera, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+   <%= link_to '<i class="icon-remove"></i> Remover'.html_safe, camera, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' , :style => 'color:#FFFFFF' %>
      </td>
   </tr>
 <% end %>
@@ -29,5 +29,5 @@
 </div>
 
 <div class="form-actions">
-  <%= link_to 'New Camera', new_camera_path, :class => 'btn btn-primary btn-white' %>
+  <%= link_to 'New Camera', new_camera_path, :class => 'btn btn-primary btn-white' , :style => 'color:#FFFFFF' %>
 </div>
