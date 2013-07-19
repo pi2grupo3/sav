@@ -5,3 +5,11 @@
 .white-link:hover {
 	background-color:#FFF;
 }
+
+.btn-white {
+	color:#FFF;
+}
+
+.btn-black {
+	color:#000;
+}
