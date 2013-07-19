@@ -24,15 +24,19 @@
   </div>
 
   <div class="span9">
-    <video width="320" height="240" controls>
-      <source src="video.mp4" type="video/mp4">
-    </video>
+
+    <!--<video width="640" height="480" controls>
+      <source src= "192.168.1.103:8080/camera.mjpeg">
+    </video>-->
+
+    <%= image_tag(image_path(@camera.url),
+    :alt => "Video for other Platform/OS") %>
 
     <p>
       <!--<button class="btn" type="button"><i class="icon-arrow-left"></i></button>-->
-      <%= link_to '<i class="icon-arrow-left"></i>'.html_safe, translade_camera_path(:id), :class => 'btn' %>
+      <%= link_to '<i class="icon-arrow-left"></i>'.html_safe, translade_camera_path(@camera), :class => 'btn' %>
       <!--<button class="btn" type="button"><i class="icon-arrow-right"></i></button>-->
-      <%= link_to '<i class="icon-arrow-right"></i>'.html_safe, translade_camera_path(:id), :class => 'btn' %>
+      <%= link_to '<i class="icon-arrow-right"></i>'.html_safe, translade_camera_path(@camera), :class => 'btn' %>
     </p>
   </div>
 </div>
