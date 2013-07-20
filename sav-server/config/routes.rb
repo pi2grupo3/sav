@@ -11,7 +11,6 @@ SavServer::Application.routes.draw do
     member do
       get 'translade'
       post 'movements'
-      get 'streaming'
     end
   end
     

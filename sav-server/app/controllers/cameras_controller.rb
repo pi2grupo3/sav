@@ -17,6 +17,7 @@ class CamerasController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+	  format.js
       format.json { render json: @camera }
     end
   end
@@ -110,7 +111,7 @@ class CamerasController < ApplicationController
 	  else
 	    @camera.go_to_position = "hold"
 	  end
-		@camera.translade
+
       if @camera.save
   	  	redirect_to @camera
 	  else
@@ -136,8 +137,4 @@ class CamerasController < ApplicationController
     end
   end
 
-  # GET /camera/1/streaming
-  def streaming
-    @camera = Camera.find(params[:id])
-  end 
 end
