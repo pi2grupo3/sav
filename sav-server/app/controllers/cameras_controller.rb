@@ -86,7 +86,7 @@ class CamerasController < ApplicationController
     @camera = Camera.find(params[:id])
 
     respond_to do |format|
-      format.json { render :json => @camera, :only => [:id, :current_position, :go_to_position] }
+	  format.json { render :json => @camera, :only => [:id, :current_position, :go_to_position] }
     end
 
     @camera.translade    
@@ -96,11 +96,22 @@ class CamerasController < ApplicationController
   def movements
     @camera = Camera.find(params[:id])
 
-    respond_to do |format|
-      if @camera.update_attributes(params[:camera])
-        format.json { head :no_content }
-      else
-        format.json { render json: @camera.errors, status: :unprocessable_entity }
+	if params[:direction]
+      @camera.go_to_position = params[:direction]
+      if @camera.save
+  	  	redirect_to @camera
+	  else
+        flash[:error] = "#{@camera.errors}"
+        redirect_to @camera
+	  end
+
+	else
+      respond_to do |format|
+        if @camera.update_attributes(params[:camera])
+          format.json { head :no_content }
+        else
+          format.json { render json: @camera.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
