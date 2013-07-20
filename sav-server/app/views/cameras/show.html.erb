@@ -12,7 +12,7 @@
 
     <p>
       <b>Current position:</b>
-      <%= @camera.current_position %>
+      <%= @camera.show_current_position %>
     </p>
 
     <p>
@@ -28,13 +28,17 @@
     <%= image_tag(image_path(@camera.url),
     :alt => "Video for other Platform/OS") %>
 
-    <p>
-        <span class="badge">1</span>
-        <span class="badge badge-success">2</span>
-        <span class="badge">3</span>
-        <span class="badge">4</span>
-        <span class="badge">5</span>
-    </p>
+  <div id="bagdes">
+	<p>
+	  <% for num in 1..@camera.checkpoints %>
+		<% if @camera.current_position == (num - 1) %>
+		  <span class="badge badge-success"><%= num %></span>
+		<% else %>
+		  <span class="badge"><%= num %></span>
+		<% end %>
+	  <% end %>
+	</p>
+  </div>
       
       <%= link_to '<i class="icon-arrow-left"></i>'.html_safe, movements_camera_path(@camera, :direction => 'left'), :method => 'post', :class => 'btn', :id => 'go-left' %>
       <%= link_to '<i class="icon-arrow-right"></i>'.html_safe, movements_camera_path(@camera, :direction => 'right'), :method => 'post', :class => 'btn', :id => 'go-right' %>

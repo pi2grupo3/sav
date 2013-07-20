@@ -58,6 +58,11 @@ class CamerasController < ApplicationController
   def update
     @camera = Camera.find(params[:id])
 
+	#checks if the cam can go to given direction
+	unless @camera.can_go?params[:camera][:go_to_position]
+	  params[:camera][:go_to_position] = 'hold'
+	end
+
     respond_to do |format|
       if @camera.update_attributes(params[:camera])
         format.html { redirect_to @camera, notice: 'Camera was successfully updated.' }
@@ -96,8 +101,16 @@ class CamerasController < ApplicationController
   def movements
     @camera = Camera.find(params[:id])
 
+	#if params[:direction] is present, means it's comming from a click on one of
+	#the arrows buttons on the camera's show page
 	if params[:direction]
-      @camera.go_to_position = params[:direction]
+	  #checks if the cam can go to given direction
+	  if @camera.can_go?(params[:direction])
+      	@camera.go_to_position = params[:direction]
+	  else
+	    @camera.go_to_position = "hold"
+	  end
+		@camera.translade
       if @camera.save
   	  	redirect_to @camera
 	  else
@@ -105,7 +118,14 @@ class CamerasController < ApplicationController
         redirect_to @camera
 	  end
 
+	#if params[:direction] is not present, means it's comming from an outside
+	#service consumption
 	else
+	  #checks if the cam can go to given direction
+	  unless @camera.can_go?((params[:camera])[:go_to_position])
+		params[:camera][:go_to_position] = 'hold'
+	  end
+
       respond_to do |format|
         if @camera.update_attributes(params[:camera])
           format.json { head :no_content }
