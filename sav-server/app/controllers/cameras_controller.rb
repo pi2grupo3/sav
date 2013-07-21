@@ -1,6 +1,7 @@
 class CamerasController < ApplicationController
   # GET /cameras
   # GET /cameras.json
+before_filter :authenticate_user!
   def index
     @cameras = Camera.all
 

@@ -1,5 +1,6 @@
 SavServer::Application.routes.draw do
 
+  devise_for :users
   get "welcome/contato"
   get "welcome/sistemaintegrado"
   get "welcome/index"
