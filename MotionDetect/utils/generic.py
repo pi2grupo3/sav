@@ -87,6 +87,23 @@ class ut:
         return cam_rec
 
     @staticmethod
+    def freeCamera(cameraObject):
+        del(cameraObject)
+
+    @staticmethod
+    def write(img,name="output_stream.jpeg"):
+        return cv2.imwrite(name,img)
+
+    @staticmethod
+    def loadJpg(path="output_stream"):
+        return cv.LoadImage(path+".jpeg")
+
+    @staticmethod
+    def showJpg(img):
+        cv.ShowImage("Do arquivo",img)
+
+
+    @staticmethod
     def writer(source, height, width, dest_name, extension='avi',codec=cv.CV_FOURCC('M','J','P','G')):			    
         fps = 25
 

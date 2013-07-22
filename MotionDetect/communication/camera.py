@@ -79,11 +79,12 @@ class CameraCommunicator():
                 return False        
         
         if( diraction == "right" or diraction == "left"  or diraction == "hold"):            
+            return True
             data = json.dumps({'camera':{"go_to_position":diraction} })
             req = url.Request(self.urlServer)
             req.add_header('Content-Type', 'application/json')        
             return  url.urlopen(req, data)     
-        
+            
         else:
             return False         
            
@@ -100,8 +101,4 @@ class CameraCommunicator():
         
     def canMoveRight(self):
         return True
-    
-    
-     
-    
     

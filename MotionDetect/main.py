@@ -5,20 +5,27 @@ Sistema SAV. Ponto de entrada para o programa sav-iprocess, responsavel por cria
 log, abrir canal de gravação, 'bootar' e manter o loop principal do programa. O processo
 de imagem é mantido na classe HMT. 
 
-@autor: Eusyar Alves de Carvalho
+@autor: Eusyar Alves de Carvalho <eusyar@gmail.com>
 @contact: eusyar@gmail.com
-@see classe htm, log e ut
+@see class htm, log e ut
 Versão 0.0.2
 '''
 
+import thread
 import cv2
 
 from utils.generic import ut
 from utils.generic import log
 from utils.booter import Boot
 
+from communication.webserver import MyHandler
+from mainloop import MainLoopHTTPServer
+
 from algorithm.hmt import HMT
-   
+
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from SocketServer import ThreadingMixIn
+
 if __name__ == "__main__":    
     
     # boot
@@ -27,17 +34,15 @@ if __name__ == "__main__":
 
     log = log(conf.getProperty("log_file"))
     log.info( "Preparando o programa... ")
-    
-    cam_rec = ut.cam(conf.getProperty("src_movie"))
+
+    try:
+        log.info("Abrindo o servidor de video")
+        server = MainLoopHTTPServer((conf.getProperty("ip"),8080), MyHandler)
+        server.init(conf, log)
         
-    log.info( "Programa iniciado com sucesso ")
+        log.info( "Programa iniciado com sucesso ")        
+        server.serve_forever()
+    except KeyboardInterrupt:
+        server.socket.close()
+        log.info( "Programa finalizado com sucesso ")     
     
-    hmt = HMT(cam_rec, conf, log)
-    
-    while ( ut.running() ):    
-        img = hmt.run()
-        cv2.imshow('Image', img)
-    
-    conf.freeCamera(cam_rec)
-    
-    log.info( "Programa finalizado com sucesso ")

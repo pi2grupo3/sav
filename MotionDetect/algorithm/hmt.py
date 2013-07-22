@@ -57,7 +57,8 @@ class HMT:
         self.filePath = self.conf.getProperty("video_output_dir")
         self.streamOutput = self.conf.getProperty("video_output_stream")
         self.cam_writer = ut.writer(self.cam_rec, self.h, self.w,  self.filePath + ut.timeToFileName() )        
-        self.cam_stream = ut.writer(self.cam_rec, self.h, self.w,  self.streamOutput, 'flv', 'flv')
+        #self.cam_stream = ut.writer(self.cam_rec, self.h, self.w,  self.streamOutput, 'flv', 'flv')
+        #ut.write(img)
 
         #Inicialização das variaveis de auxílio
         self.time_counter = 0
@@ -152,7 +153,11 @@ class HMT:
         # Center Point debug
         ut.drawRect( self.center_rect, img, (255, 0, 0) )
 
-        self.cam_stream.write(img)
+        #self.cam_stream.write(img)
+        #ut.write(img)
+
+        output_stream = img
+
         return img            
 
     def askDirection(self,point):

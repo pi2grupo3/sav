@@ -2,6 +2,7 @@
 # Boot Options
 ##########################################
 log_file=running2.txt
+ip=192.168.1.248
 
 ##########################################
 # Camera Capture Options: 
@@ -28,7 +29,7 @@ src_movie=0
 # Camera Comunication Options: 
 ##########################################
 #url_server=http://192.168.1.140:3000/cameras/1/translade.json
-url_server=http://192.168.1.250:3000/cameras/1/movements
+url_server=http://192.168.1.119:3000/cameras/1/movements.json
 url_rasp=127.0.0.1
 
 
