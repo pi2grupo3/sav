@@ -33,6 +33,7 @@
       <!-- For all other devices -->
       <!-- Size should be 32 x 32 pixels -->
       <%= favicon_link_tag 'favicon.ico'%>
+
     </head>
     <body>
 
@@ -45,14 +46,14 @@
               <span class="icon-bar"></span>
             </a>
 
-            <a class="brand" href="http://localhost:3000/welcome/index"><img src="/assets/images/home_icon.png" />Sistemas PI-2</a>
+            <a class="brand" href="../welcome/index"> <%=image_tag 'home_icon.png'%> Sistemas PI-2</a>
             <div class="nav-collapse collapse">
               <ul class="nav">
               </li>
-              <li><a href="http://localhost:3000/welcome/poste ">Poste</a></li>
-              <li><a href="http://localhost:3000/welcome/monitoramento ">Monitoramento</a></li>
-              <li><a href="http://localhost:3000/welcome/seguranca ">Seguranca</a></li>
-              <li><a href="http://localhost:3000/welcome/contato ">Contato</a></li>
+              <li><a href="../welcome/poste ">Poste</a></li>
+              <li><a href="../welcome/monitoramento ">Monitoramento</a></li>
+              <li><a href="../welcome/seguranca ">Seguranca</a></li>
+              <li><a href="../welcome/contato ">Contato</a></li>
             </div><!--/.nav-collapse -->
             <p class="navbar-text pull-right">
               <% if user_signed_in? %>
