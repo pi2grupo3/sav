@@ -45,6 +45,17 @@ before_filter :authenticate_user!
   def create
     @camera = Camera.new(params[:camera])
 
+		if params[:camera][:url].nil? || params[:camera][:url].empty?
+			@camera.url = 'SAV_StreamOff.png'
+		end
+		if params[:camera][:current_position].nil?
+			@camera.current_position = 0
+		end
+		if params[:camera][:go_to_position].nil?
+			@camera.go_to_position = 'hold'
+		end
+    	
+
     respond_to do |format|
       if @camera.save
         format.html { redirect_to @camera, notice: 'Camera was successfully created.' }

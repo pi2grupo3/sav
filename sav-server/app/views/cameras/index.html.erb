@@ -2,6 +2,20 @@
 	<h1>Cameras</h1>
 </div>
 
+<div id="cams-imgs" class="row">
+	 <% @cameras.each do |camera| %>
+		<div class="span3 pagination-centered well">
+	     <%= link_to image_tag(image_path(camera.url), :size => '250x250', :class => 'camera-img', :alt => "Video for other Platform/    OS"),camera%>
+	
+	<p>
+		<b>Camera:</b>
+		<%= camera.description %>
+	</p>
+	  </div>
+	<% end %>
+	
+</div>
+
 <div class="well">
 
 <table class="table table-striped">
@@ -26,20 +40,6 @@
 <% end %>
 </table>
 
-</div>
-
-<div class="row">
-	 <% @cameras.each do |camera| %>
-		<div class="span3 pagination-centered well">
-	     <%= link_to image_tag(image_path(camera.url), :size => '250x250', :class => 'camera-img', :alt => "Video for other Platform/    OS"),camera%>
-	
-	<p>
-		<b>Camera:</b>
-		<%= camera.description %>
-	</p>
-	  </div>
-	<% end %>
-	
 </div>
 
 
