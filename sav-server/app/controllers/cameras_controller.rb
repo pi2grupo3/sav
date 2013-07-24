@@ -2,6 +2,7 @@ class CamerasController < ApplicationController
   # GET /cameras
   # GET /cameras.json
 before_filter :authenticate_user!
+
   def index
     @cameras = Camera.all
 
@@ -60,10 +61,10 @@ before_filter :authenticate_user!
   def update
     @camera = Camera.find(params[:id])
 
-	#checks if the cam can go to given direction
-	unless @camera.can_go?params[:camera][:go_to_position]
-	  params[:camera][:go_to_position] = 'hold'
-	end
+		#checks if the cam can go to given direction
+		unless @camera.can_go?params[:camera][:go_to_position]
+			params[:camera][:go_to_position] = 'hold'
+		end
 
     respond_to do |format|
       if @camera.update_attributes(params[:camera])
@@ -93,48 +94,57 @@ before_filter :authenticate_user!
     @camera = Camera.find(params[:id])
 
     respond_to do |format|
-	  format.json { render :json => @camera, :only => [:id, :current_position, :go_to_position] }
-    end
-
-    @camera.translade    
+	  	format.json { render :json => @camera, :only => [:id, :current_position, :go_to_position] }
+    end  
   end
 
   # POST /camera/1/movements.json
   def movements
     @camera = Camera.find(params[:id])
 
-	#if params[:direction] is present, means it's comming from a click on one of
-	#the arrows buttons on the camera's show page
-	if params[:direction]
 	  #checks if the cam can go to given direction
-	  if @camera.can_go?(params[:direction])
-      	@camera.go_to_position = params[:direction]
+	  unless @camera.can_go?((params[:camera])[:go_to_position])
+		  params[:camera][:go_to_position] = 'hold'
+	  end
+
+    respond_to do |format|
+      if @camera.update_attributes(params[:camera])
+        format.json { head :no_content }
+      else
+        format.json { render json: @camera.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  #PUT /cameras/1/manual_control
+  def manual_control
+		@camera = Camera.find(params[:id])
+		direction = params[:direction]
+
+		#checks if the cam can go to given direction
+	  if @camera.can_go? direction
+      	@camera.go_to_position = direction
 	  else
 	    @camera.go_to_position = "hold"
 	  end
 
-      if @camera.save
+    if @camera.save
   	  	redirect_to @camera
 	  else
         flash[:error] = "#{@camera.errors}"
         redirect_to @camera
 	  end
+  end
 
-	#if params[:direction] is not present, means it's comming from an outside
-	#service consumption
-	else
-	  #checks if the cam can go to given direction
-	  unless @camera.can_go?((params[:camera])[:go_to_position])
-		params[:camera][:go_to_position] = 'hold'
-	  end
+	#POST /cameras/1/checkin.json
+  def checkin
+		@camera = Camera.find(params[:id])
 
-      respond_to do |format|
-        if @camera.update_attributes(params[:camera])
-          format.json { head :no_content }
-        else
-          format.json { render json: @camera.errors, status: :unprocessable_entity }
-        end
-      end
+    @camera.update_position
+		@camera.save
+
+		respond_to do |format|
+      format.json { head :no_content }      
     end
   end
 

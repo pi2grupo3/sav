@@ -12,6 +12,8 @@ SavServer::Application.routes.draw do
     member do
       get 'translade'
       post 'movements'
+			post 'checkin'
+			put 'manual_control'
     end
   end
     
