@@ -27,3 +27,9 @@
 	width: 250px;
 	height: 250px;
 }
+
+#manual-control {
+	margin-top: 25px;
+	max-width: 180px;
+	text-align: center;
+}
