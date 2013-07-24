@@ -1,6 +1,8 @@
 class CamerasController < ApplicationController
   # GET /cameras
   # GET /cameras.json
+before_filter :authenticate_user!
+
   def index
     @cameras = Camera.all
 
@@ -17,6 +19,7 @@ class CamerasController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+	  format.js
       format.json { render json: @camera }
     end
   end
@@ -58,6 +61,11 @@ class CamerasController < ApplicationController
   def update
     @camera = Camera.find(params[:id])
 
+		#checks if the cam can go to given direction
+		unless @camera.can_go?params[:camera][:go_to_position]
+			params[:camera][:go_to_position] = 'hold'
+		end
+
     respond_to do |format|
       if @camera.update_attributes(params[:camera])
         format.html { redirect_to @camera, notice: 'Camera was successfully updated.' }
@@ -81,34 +89,63 @@ class CamerasController < ApplicationController
     end
   end
 
-  # GET /cameras/1/translade
   # GET /cameras/1/translade.json
   def translade
     @camera = Camera.find(params[:id])
 
     respond_to do |format|
-      format.json { render :json => @camera, :only => [:id, :current_position, :go_to_position] }
-    end    
+	  	format.json { render :json => @camera, :only => [:id, :current_position, :go_to_position] }
+    end  
   end
 
-  # PUT /camera/1/movements
-  # PUT /camera/1/movements.json
+  # POST /camera/1/movements.json
   def movements
     @camera = Camera.find(params[:id])
 
+	  #checks if the cam can go to given direction
+	  unless @camera.can_go?((params[:camera])[:go_to_position])
+		  params[:camera][:go_to_position] = 'hold'
+	  end
+
     respond_to do |format|
       if @camera.update_attributes(params[:camera])
-        format.html { redirect_to @camera, notice: 'Camera was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
         format.json { render json: @camera.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # GET /camera/1/streaming
-  def streaming
-    @camera = Camera.find(params[:id])
-  end 
+  #PUT /cameras/1/manual_control
+  def manual_control
+		@camera = Camera.find(params[:id])
+		direction = params[:direction]
+
+		#checks if the cam can go to given direction
+	  if @camera.can_go? direction
+      	@camera.go_to_position = direction
+	  else
+	    @camera.go_to_position = "hold"
+	  end
+
+    if @camera.save
+  	  	redirect_to @camera
+	  else
+        flash[:error] = "#{@camera.errors}"
+        redirect_to @camera
+	  end
+  end
+
+	#POST /cameras/1/checkin.json
+  def checkin
+		@camera = Camera.find(params[:id])
+
+    @camera.update_position
+		@camera.save
+
+		respond_to do |format|
+      format.json { head :no_content }      
+    end
+  end
+
 end

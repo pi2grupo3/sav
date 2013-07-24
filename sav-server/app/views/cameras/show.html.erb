@@ -1,40 +1,62 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <div class="span3">
+  
+    <h3>Camera #<%= @camera.id %></h3>
+    
+    <div class="well">
 
-<p>
-  <b>URL:</b>
-  <%= @camera.url %>
-</p>
+    <p>
+	  <b>Description</b>
+	  <%= @camera.description %>
+	</p>
 
-<p>
-  <b>Current position:</b>
-  <%= @camera.current_position %>
-</p>
+    <p>
+      <b>Current position:</b>
+      <%= @camera.show_current_position %>
+    </p>
 
-<p>
-  <b>Go to position:</b>
-  <%= @camera.go_to_position %>
-</p>
+    <p>
+      <b>Go to position:</b>
+      <%= @camera.go_to_position %>
+    </p>
 
-<p>
-  <b>Current x position:</b>
-  <%= @camera.current_x_position %>
-</p>
+    </div>
+  </div>
 
-<p>
-  <b>Current y position:</b>
-  <%= @camera.current_y_position %>
-</p>
+  <div class="span9">
 
-<p>
-  <b>Go to x position:</b>
-  <%= @camera.go_to_x_position %>
-</p>
+    <%= image_tag(image_path(@camera.url),
+    :alt => "Video for other Platform/OS") %>
 
-<p>
-  <b>Go to y position:</b>
-  <%= @camera.go_to_y_position %>
-</p>
+  <div id="bagdes">
+	<p>
+	  <% for num in 1..@camera.checkpoints %>
+		<% if @camera.current_position == (num - 1) %>
+		  <span class="badge badge-success"><%= num %></span>
+		<% else %>
+		  <span class="badge"><%= num %></span>
+		<% end %>
+	  <% end %>
+	</p>
+  </div>
+      
+  <div id="manual-control" class="well">
 
+    <%= link_to ''.html_safe, manual_control_camera_path(@camera, :direction => 'left'),
+		  :method => 'put', :class => 'btn btn-large icon-backward', :id => 'go-left' %>
+		<%= link_to ''.html_safe, manual_control_camera_path(@camera, :direction => 'hold'),
+			:method => 'put', :class => 'btn btn-large icon-stop', :id => 'hold' %>
+    <%= link_to ''.html_safe, manual_control_camera_path(@camera, :direction => 'right'),
+			:method => 'put', :class => 'btn btn-large icon-forward', :id => 'go-right' %>
+   
+  </div>
 
-<%= link_to 'Edit', edit_camera_path(@camera) %> |
-<%= link_to 'Back', cameras_path %>
+  </div>
+</div>
+
+<div class="form-actions">
+    <p>
+      <%= link_to 'Edit', edit_camera_path(@camera), :class => 'btn btn-primary' , :style => 'color:#FFFFFF' %>
+    </p> 
+    <%= link_to 'Back', cameras_path %>
+</div>

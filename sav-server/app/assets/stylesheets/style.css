@@ -1,0 +1,35 @@
+.white-link {
+	color:#FFF;
+}
+
+.white-link:hover {
+	background-color:#FFF;
+}
+
+.btn-white {
+	color:#FFF;
+}
+
+.btn-black {
+	color:#000;
+}
+
+#cameras-div {
+	max-width: 700px;
+  display: inline-block;
+}
+
+.cameras-div {
+	padding: 25;
+}
+
+.camera-img {
+	width: 250px;
+	height: 250px;
+}
+
+#manual-control {
+	margin-top: 25px;
+	max-width: 180px;
+	text-align: center;
+}

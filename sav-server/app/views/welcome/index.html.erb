@@ -1,0 +1,45 @@
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div>
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                  <li class="divider"></li>
+                </ul>
+              </li>
+            </ul>
+           
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Sistema Integrado UnB </h1> </br>
+        <p>O presente sitema é a integração dos sistemas: Serviço de auxilio ao vigilante (SAV); Monitoramento da rede eletrica; Poste Vigilante Autônomo. Cada um dos projetos foi desenvolvido na disciplina de Projeto Integrador 2. Cada projeto tinha como intutuito melhorar algum aspecto do campus da FGA. Esse site busca integrar todos esses serviços em um um só lugar.</p>
+        <p><a href="http://localhost:3000/welcome/sistemaintegrado" class="btn btn-primary btn-large" style="color:#FFFFFF"> Mais informações</a></p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+         <a href="http://localhost:3000/cameras"> <h2>Servico de auxilio ao vigilante</h2> </a>
+          <p>É um sistema de vigilância composto por câmeras, com a intenção de auxiliar os vigilantes na identificação de pessoas no estacionamento. O sistema conta com câmeras de vigilância instaladas na área externa do campus da FGA.</p>
+          <p><%= link_to 'Mais informaçoes', welcome_seguranca_path, :class => 'btn' %></p>
+        </div>
+        <div class="span4">
+          <h2>Poste Vigilante Autônomo </h2>
+          <p> O Poste Vigilante Autônomo visa controlar problemas que ocorrem no estacionamento a partir do monitoramento de imagens provindas das câmeras de segurança instaladas nos postes, controlando também o nível de iluminação e tudo isso com consumo responsável de energia.</p>
+          <p><%= link_to 'Mais informaçoes', welcome_poste_path, :class => 'btn' %></p>
+       </div>
+        <div class="span4">
+          <h2>Monitoramento da rede eletrica</h2>
+          <p> Seria feito um estudo da curva de carga do Campus da FGA para que se pudesse optar em quais momentos um sistema híbrido entraria em operação de forma autônoma e todas as suas considerações de operação.</p>
+          <p><%= link_to 'Mais informaçoes', welcome_monitoramento_path, :class => 'btn' %></p>
+        </div>
+      </div>
