@@ -5,19 +5,19 @@ students from Universidade de Brasília for the Projeto Integrador 2 course.
 
 ## AUTHORS
 
-Antônio Boson 
+Antônio Boson.
 
-Daniel Costa Bucher <daniel.bucher88@gmail.com>
+Daniel Costa Bucher <daniel.bucher88@gmail.com>.
 
-Eusyar Alves de Carvalho <aleukacei@gmail.com>
+Eusyar Alves de Carvalho <aleukacei@gmail.com>.
 
-Guilherme Fay Vergara <gfv.unb@gmail.com>
+Guilherme Fay Vergara <gfv.unb@gmail.com>.
 
-José Carlos Guimarães Neto <carlos.neo@gmail.com>
+José Carlos Guimarães Neto <carlos.neo@gmail.com>.
 
-Lucas Coelho Almeida
+Lucas Coelho Almeida.
 
-Vinícius Vieira <vvieira17@gmail.com>
+Vinícius Vieira <vvieira17@gmail.com>.
 
 ## COPYRIGHT
 This program is free software: you can redistribute it and/or modify
