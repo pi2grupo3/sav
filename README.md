@@ -9,7 +9,7 @@ Antônio Boson.
 
 Daniel Costa Bucher <daniel.bucher88@gmail.com>.
 
-Eusyar Alves de Carvalho <aleukacei@gmail.com>.
+Eusyar Alves de Carvalho <eusyar@gmail.com>.
 
 Guilherme Fay Vergara <gfv.unb@gmail.com>.
 
