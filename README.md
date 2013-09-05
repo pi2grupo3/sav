@@ -13,7 +13,7 @@ Eusyar Alves de Carvalho <eusyar@gmail.com>.
 
 Guilherme Fay Vergara <gfv.unb@gmail.com>.
 
-José Carlos Guimarães Neto <carlos.neo@gmail.com>.
+José Carlos Guimarães <carlos.neo@gmail.com>.
 
 Lucas Coelho Almeida.
 
